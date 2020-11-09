@@ -11,9 +11,20 @@
     <input type="text" th:field="*{name}" id="name"/>
     <label for="email">Enter email</label>
     <input type="text" th:field="*{email}" id="email">
+    <label for="username">Enter username</label>
+    <input type="text" th:field="*{username}" id="username">
+    <label for="password">Enter password</label>
+    <input type="text" th:field="*{password}" id="password">
     <br/>
     <input type="submit" value="Create"/>
 
+</form>
+
+<br/>
+<hr/>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Exit</button>
 </form>
 
 </body>

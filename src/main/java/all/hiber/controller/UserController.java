@@ -13,6 +13,7 @@ public class UserController {
     @Autowired
     public UserService userService;
 
+
     @GetMapping()
     public String allUser (Model model){
         model.addAttribute("users", userService.allUsers());

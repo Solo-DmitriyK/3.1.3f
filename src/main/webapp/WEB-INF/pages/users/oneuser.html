@@ -2,24 +2,16 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>User</title>
+    <title>Title</title>
 </head>
 <body>
-
 <p th:text="${user.getName()}">VALUE</p>
 <p th:text="${user.getId()}">VALUE</p>
-
-<a th:href="@{/users/{id}/edit(id=${user.getId()})}">Edit</a>
-
-<form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
-    <input type="submit" value="Delete"/>
-</form>
 
 <br/>
 <hr/>
 
 <form th:action="@{/logout}" method="post">
     <button type="submit">Exit</button>
-</form>
 </body>
 </html>
