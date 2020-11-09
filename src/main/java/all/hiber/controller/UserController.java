@@ -8,11 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/admin")
 public class UserController {
     @Autowired
     public UserService userService;
-
 
     @GetMapping()
     public String allUser (Model model){
@@ -33,7 +32,7 @@ public class UserController {
     @PostMapping
     public String create(@ModelAttribute("user") User user){
         userService.add(user);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     @GetMapping("/{id}/edit")
@@ -45,13 +44,13 @@ public class UserController {
     @PatchMapping("/{id}")
     public String udgate(@ModelAttribute("user") User user, @PathVariable("id") long id){
         userService.edit(id, user);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@ModelAttribute("user") User user, @PathVariable("id") long id){
         userService.delete(id);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
 
