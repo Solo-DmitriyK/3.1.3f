@@ -2,7 +2,6 @@ package all.hiber.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
@@ -39,12 +38,12 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public User(long id, String name){
+    public User(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public User (){
+    public User() {
 
     }
 

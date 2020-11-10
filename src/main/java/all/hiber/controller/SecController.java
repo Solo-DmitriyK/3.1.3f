@@ -21,11 +21,11 @@ public class SecController {
         return "users/login";
     }
 
-    @GetMapping("/oneuser")
+    @GetMapping("/user")
     public String toUser(Principal principal, Model model){
         User user = (User) userService.loadUserByUsername(principal.getName());
         model.addAttribute("user", user);
-        return "users/oneuser";
+        return "users/user";
     }
 
 }
