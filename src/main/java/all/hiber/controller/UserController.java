@@ -16,17 +16,17 @@ public class UserController {
     @GetMapping()
     public String allUser (Model model){
         model.addAttribute("users", userService.allUsers());
-        return "users/users";
+        return "users";
     }
 
     @GetMapping("/{id}")
     public String Show(@PathVariable("id") long id, Model model){
         model.addAttribute("user", userService.getById(id));
-        return "users/useradmin";
+        return "useradmin";
     }
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user){
-        return "users/new";
+        return "new";
     }
 
     @PostMapping
@@ -38,7 +38,7 @@ public class UserController {
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id){
         model.addAttribute("user", userService.getById(id));
-        return "users/edit";
+        return "edit";
     }
 
     @PatchMapping("/{id}")

@@ -18,14 +18,14 @@ public class SecController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
-        return "users/login";
+        return "login";
     }
 
     @GetMapping("/user")
     public String toUser(Principal principal, Model model){
         User user = (User) userService.loadUserByUsername(principal.getName());
         model.addAttribute("user", user);
-        return "users/user";
+        return "user";
     }
 
 }
