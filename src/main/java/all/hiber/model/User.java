@@ -4,6 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -42,6 +44,7 @@ public class User implements UserDetails {
         this.id = id;
         this.name = name;
     }
+
 
     public User() {
 
@@ -87,6 +90,13 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public void setRole(String role) {
+        Role role1 = new Role();
+        role1.setRole(role);
+        if (roles == null) this.roles = new HashSet<>();
+        roles.add(role1);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -121,4 +131,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

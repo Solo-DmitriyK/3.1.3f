@@ -48,4 +48,5 @@ public class UserServiceImp implements UserService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return userDao.getByUsername(s);
     }
+
 }

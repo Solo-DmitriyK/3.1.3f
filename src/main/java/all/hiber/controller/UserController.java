@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/admin")
 public class UserController {
@@ -14,8 +16,11 @@ public class UserController {
     public UserService userService;
 
     @GetMapping()
-    public String allUser (Model model){
+    public String allUser (Principal principal, Model model){
         model.addAttribute("users", userService.allUsers());
+        User user = (User) userService.loadUserByUsername(principal.getName());
+        model.addAttribute("userMail", user);
+
         return "users";
     }
 
