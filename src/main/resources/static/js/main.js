@@ -24,7 +24,6 @@ function redrawTable(userList) {
         var authorities = user.roles.map(function(a) { return a.authority; }).join('<br/>');
         var btnEdit = '<a class="btn btn-primary btn-edit" data-id="' + user.id + '">Edit</a>';
         var btnDelete = '<a class="btn btn-danger btn-delete" data-id="' + user.id + '">Delete</a>';
-        // var buttons = btnEdit + ' ' + btnDelete;
         $table.append('<tr>' +
             '<td>' + user.id + '</td>' +
             '<td>' + user.name + '</td>' +
@@ -37,48 +36,6 @@ function redrawTable(userList) {
     $('.btn-delete').on('click', function(event) { deleteUser( event.currentTarget.getAttribute('data-id')); });
     $('.btn-edit').on('click',   function(event) { openEditTab(event.currentTarget.getAttribute('data-id')); });
 }
-
-
-
-
-
-function redrawTableUser(userList) {
-    var $table = $('.table-user tbody');
-    $table.empty();
-    userList((user, index) => {
-        var authorities = user.roles.map(function(a) { return a.authority; }).join('<br/>');
-
-        // var buttons = btnEdit + ' ' + btnDelete;
-        $table.append('<tr>' +
-            '<td>' + user.id + '</td>' +
-            '<td>' + user.name + '</td>' +
-            '<td>' + user.email + '</td>' +
-            '<td>' + authorities + '</td>' +
-            '</tr>');
-    });
-
-}
-
-function updateSoloUser() {
-    $.ajax({
-        url: '/admin/api/all',
-        type: 'get',
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (data) {
-            redrawTableUser(data);
-        },
-        error: function () {
-            showError('На сервере произошла ошибка');
-        }
-    });
-
-}
-
-
-
-
-
 
 
 function getCurrentUser(id) {
@@ -103,7 +60,7 @@ function getUser(id, func) {
     });
 }
 
-// function
+
 
 function createUser() {
     var userData = $('#new-user-form').jsonify();
