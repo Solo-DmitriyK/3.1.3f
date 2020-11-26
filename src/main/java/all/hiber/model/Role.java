@@ -1,5 +1,6 @@
 package all.hiber.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.Set;
@@ -15,6 +16,7 @@ public class Role implements GrantedAuthority {
     @Column(name = "role", nullable = false)
     private String role;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 

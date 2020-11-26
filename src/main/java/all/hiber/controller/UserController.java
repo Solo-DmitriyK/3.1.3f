@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     public UserService userService;
 
-    @GetMapping()
+    @GetMapping
     public String allUser (Principal principal, Model model){
         model.addAttribute("users", userService.allUsers());
         User user = (User) userService.loadUserByUsername(principal.getName());
@@ -24,39 +24,39 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/{id}")
-    public String Show(@PathVariable("id") long id, Model model){
-        model.addAttribute("user", userService.getById(id));
-        return "useradmin";
-    }
-    @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user){
-        return "new";
-    }
-
-    @PostMapping
-    public String create(@ModelAttribute("user") User user){
-        userService.add(user);
-        return "redirect:/admin";
-    }
-
-    @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") long id){
-        model.addAttribute("user", userService.getById(id));
-        return "edit";
-    }
-
-    @PatchMapping("/{id}")
-    public String udgate(@ModelAttribute("user") User user, @PathVariable("id") long id){
-        userService.edit(id, user);
-        return "redirect:/admin";
-    }
-
-    @DeleteMapping("/{id}")
-    public String delete(@ModelAttribute("user") User user, @PathVariable("id") long id){
-        userService.delete(id);
-        return "redirect:/admin";
-    }
-
-
+//    @GetMapping("/{id}")
+//    public String Show(@PathVariable("id") long id, Model model){
+//        model.addAttribute("user", userService.getById(id));
+//        return "useradmin";
+//    }
+//    @GetMapping("/new")
+//    public String newUser(@ModelAttribute("user") User user){
+//        return "new";
+//    }
+//
+//    @PostMapping
+//    public String create(@ModelAttribute("user") User user){
+//        userService.add(user);
+//        return "redirect:/admin";
+//    }
+//
+//    @GetMapping("/{id}/edit")
+//    public String edit(Model model, @PathVariable("id") long id){
+//        model.addAttribute("user", userService.getById(id));
+//        return "edit";
+//    }
+//
+//    @PatchMapping("/{id}")
+//    public String udgate(@ModelAttribute("user") User user, @PathVariable("id") long id){
+//        userService.edit(id, user);
+//        return "redirect:/admin";
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public String delete(@ModelAttribute("user") User user, @PathVariable("id") long id){
+//        userService.delete(id);
+//        return "redirect:/admin";
+//    }
+//
+//
 }

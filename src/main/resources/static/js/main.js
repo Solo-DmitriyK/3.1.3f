@@ -39,6 +39,48 @@ function redrawTable(userList) {
 }
 
 
+
+
+
+function redrawTableUser(userList) {
+    var $table = $('.table-user tbody');
+    $table.empty();
+    userList((user, index) => {
+        var authorities = user.roles.map(function(a) { return a.authority; }).join('<br/>');
+
+        // var buttons = btnEdit + ' ' + btnDelete;
+        $table.append('<tr>' +
+            '<td>' + user.id + '</td>' +
+            '<td>' + user.name + '</td>' +
+            '<td>' + user.email + '</td>' +
+            '<td>' + authorities + '</td>' +
+            '</tr>');
+    });
+
+}
+
+function updateSoloUser() {
+    $.ajax({
+        url: '/admin/api/all',
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+            redrawTableUser(data);
+        },
+        error: function () {
+            showError('На сервере произошла ошибка');
+        }
+    });
+
+}
+
+
+
+
+
+
+
 function getCurrentUser(id) {
     $.ajax({
         url: '/admin/api/',
@@ -65,12 +107,14 @@ function getUser(id, func) {
 
 function createUser() {
     var userData = $('#new-user-form').jsonify();
-    if (!validateNewUser(userData)) {
-        return;
-    }
-    if (typeof userData.roles === 'string') {
-        userData.roles = [userData.roles];
-    }
+    console.log("функция криэйд зашло")
+    // if (!validateNewUser(userData)) {
+    //     return;
+    // }
+    // if (typeof userData.roles === 'string') {
+    //     userData.roles = [userData.roles];
+    // }
+    console.log("дошло до ajax")
     $.ajax({
         url: '/admin/api/',
         type: 'post',
@@ -88,12 +132,13 @@ function createUser() {
 
 function updateUser() {
     var userData = $('#edit-user-form').jsonify();
-    if (!validateNewUser(userData)) {
-        return;
-    }
+    // if (!validateNewUser(userData)) {
+    //     return;
+    // }
     if (typeof userData.roles === 'string') {
         userData.roles = [userData.roles];
     }
+    console.log("дошли до ajax update")
     $.ajax({
         url: '/admin/api/' + userData.id,
         type: 'put',

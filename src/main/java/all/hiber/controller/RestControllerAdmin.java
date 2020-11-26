@@ -30,24 +30,29 @@ public class RestControllerAdmin {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> get(@PathVariable Long id) {
+        System.out.println("get trabajo");
         return ResponseEntity.ok(userService.getById(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<List<User>> delete(@PathVariable Long id) {
+        System.out.println("delete trabajo");
         userService.delete(id);
         return ResponseEntity.ok(userService.allUsers());
     }
 
     @PostMapping("/")
     public ResponseEntity<List<User>> post(@RequestBody User user) {
+        System.out.println("post trabajo");
         userService.add(user);
         return ResponseEntity.ok(userService.allUsers());
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<List<User>> put(@PathVariable Long id, @RequestBody User user) {
+        System.out.println("put start controller");
         userService.edit(id, user);
+        System.out.println("привет из контроллера Put");
         return ResponseEntity.ok(userService.allUsers());
     }
 
